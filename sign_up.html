@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System - Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .signup-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style> -->
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url("{{ url_for('static', filename='Centro hospitalar - enfermagem.jpeg') }}");
+            /* background-size: cover; */
+            /* background-repeat: no-repeat; */
+            background-color: #eef2f3; /* Lighter background for contrast */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    
+        .signup-container {
+            max-width: 450px;
+            width: 100%;
+            margin: 20px;
+            padding: 30px;
+            background-color: #fff;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            transition: transform 0.3s ease; /* Subtle scale effect on hover */
+        }
+    
+        .signup-container:hover {
+            transform: scale(1.02);
+        }
+    
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333; /* Darker text for better readability */
+        }
+    
+        .form-group {
+            margin-bottom: 20px;
+        }
+    
+        label {
+            font-weight: bold;
+            color: #555;
+            
+        }
+    
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        select {
+            width: 85%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s; /* Smooth transition for focus */
+        }
+    
+        input:focus,
+        select:focus {
+            border-color: #28a745; /* Green border on focus */
+            outline: none; /* Remove default outline */
+        }
+    
+        .btn {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff; /* Blue color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease; /* Smooth transition effect */
+    }
+
+    .btn:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+        transform: translateY(-1px); 
+    }
+
+        
+    
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+    
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    
+        @media (max-width: 480px) {
+            .signup-container {
+                padding: 20px;
+                margin: 10px;
+            }
+    
+            h2 {
+                font-size: 24px; /* Adjust font size for smaller screens */
+            }
+        }
+    </style>
+    
+</head>
+<body>
+
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <form method="POST" action="{{ url_for('signup') }}">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select class="form-select" id="role" name="role" required>
+                    <option value="patient">Patient</option>
+                    <option value="doctor">Doctor</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="specialization" class="form-label">Specialization (Doctor only)</label>
+                <input type="text" class="form-control" id="specialization" name="specialization" placeholder="e.g., Cardiology" required>
+            </div>
+            <div class="mb-3">
+                <label for="contact" class="form-label">Contact Info</label>
+                <input type="text" class="form-control" id="contact" name="contact" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+        
+
+        {% if session.get('error') %}
+        <div class="error-message">
+            {{ session['error'] }}
+        </div>
+        {% endif %}
+
+        <div class="login-link">
+            <p>Already have an account? <a href="/login">Login here</a>.</p>
+        </div>
+    </div>
+
+</body>
+</html>

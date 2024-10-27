@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System - Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- <style>
+        body {
+        font-family: 'Helvetica Neue', Arial, sans-serif; /* Updated font family */
+        background: linear-gradient(to right, #74ebd5, #acb6e5); /* Gradient background */
+        margin: 0;
+        padding: 0;
+        height: 100vh; /* Full height */
+        display: flex; /* Flexbox for centering */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+    }
+    
+        .login-container {
+        max-width: 700px; /* Increased max-width */
+        width: 100%;
+        padding: 40px; /* Increased padding */
+        background-color: #ffffff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        transition: transform 0.3s;
+        font-size: 50px;
+    }
+    
+        .login-container:hover {
+            transform: scale(1.02);
+        }
+    
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 600;
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+    
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+    
+        input[type="text"],
+        input[type="password"] {
+            width: 90%;
+            padding: 15px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 25px;
+            transition: border-color 0.3s;
+        }
+    
+        input:focus {
+            border-color: #74ebd5;
+            outline: none;
+        }
+    
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+    
+        .btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+    
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    
+        .signup-link {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+    
+        .signup-link a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+    
+        .signup-link a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+    </style> -->
+
+
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif; /* Updated font family */
+            background-image: url("{{ url_for('static', filename='Centro hospitalar - enfermagem.jpeg') }}"); /* Background image */
+           
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-size: 20px;
+            height: 100vh; /* Full height */
+            display: flex; /* Flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+        
+        .login-container {
+            max-width: 700px; /* Increased max-width */
+            width: 100%;
+            padding: 40px; /* Increased padding */
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .login-container:hover {
+            transform: scale(1.02);
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            width: 85%;
+            padding: 15px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 20px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus {
+            border-color: #74ebd5;
+            outline: none;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff; /* Blue color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px);
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        
+        .signup-link {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 20px;
+            color: #666;
+        }
+        
+        .signup-link a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .signup-link a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+    </style>
+    
+    
+</head>
+<body>
+
+    <div class="login-container">
+        <h1>HMS</h1>
+        <h2>Login</h2>
+        <form method="POST" action="/login">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Enter Username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter Password" required>
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+        </form>
+
+        {% if session.get('error') %}
+        <div class="error-message">
+            {{ session['error'] }}
+        </div>
+        {% endif %}
+
+        <div class="signup-link">
+            <p>Don't have an account? <a href="/signup">Sign up here</a>.</p>
+        </div>
+    </div>
+
+</body>
+</html>

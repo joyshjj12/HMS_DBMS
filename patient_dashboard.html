@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Dashboard - Hospital Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+
+    <style>
+        /* Basic styling for dashboard */
+        body {
+            font-family: Arial, sans-serif;
+            background: 
+                linear-gradient(to right, rgba(116, 235, 213, 0.5), rgba(172, 182, 229, 0.5)), 
+                url("{{ url_for('static', filename='Centro hospitalar - enfermagem.jpeg') }}");
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+        }
+
+        .navbar {
+            background-color: #2980b9; /* Consistent navbar color */
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: #ecf0f1; /* Lighter text for contrast */
+            text-decoration: none;
+            float: right; /* Align links to the right */
+            margin-right: 20px;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+        }
+
+        h2 {
+            color: #2980b9; /* Consistent heading color */
+            border-bottom: 2px solid #2980b9; /* Underline for emphasis */
+            padding-bottom: 10px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        table {
+            width: 100%; /* Full width table */
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid #bdc3c7; /* Border color */
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db; /* Blue for table headers */
+            color: white; /* White text for contrast */
+        }
+
+        tr {
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hovered rows */
+        }
+
+        tr:hover {
+            background-color: #f1f8ff; /* Light blue background on hover */
+        }
+
+        .btn {
+            padding: 8px 12px;
+            background-color: #27ae60; /* Green for primary buttons */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        .btn:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+        .btn-danger {
+            background-color: #e74c3c; /* Danger button color */
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b; /* Darker red on hover */
+        }
+
+        .flash {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid transparent; /* Border for flash messages */
+        }
+
+        .flash-success {
+            background-color: #2ecc71; /* Success flash message color */
+            color: white;
+            border-color: #27ae60; /* Green border */
+        }
+
+        .flash-danger {
+            background-color: #e74c3c; /* Danger flash message color */
+            color: white;
+            border-color: #c0392b; /* Red border */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>Patient Dashboard</h1>
+        <a href="{{ url_for('logout') }}" style="color: white; text-decoration: none;">Logout</a>
+    </div>
+
+    <div class="container">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="flash flash-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <!-- Book Appointment Section -->
+        <div class="section">
+            <h2>Book an Appointment</h2>
+            <a href="{{ url_for('book_appointment') }}" class="btn">Make Appointment</a>
+        </div>
+
+        <!-- Appointments Section -->
+        <div class="section">
+            <h2>Your Appointments</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Appointment ID</th>
+                        <th>Doctor</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for appointment in appointments %}
+                    <tr>
+                        <td>{{ appointment.id }}</td>
+                        <td>{{ appointment.doctor }}</td>
+                        <td>{{ appointment.appointment_date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Account Management -->
+        <div class="section">
+            <h2>Account Settings</h2>
+            <a href="{{ url_for('patient_edit_account') }}" class="btn">Edit Account</a>
+            <form action="{{ url_for('patient_delete_account') }}" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</button>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>
